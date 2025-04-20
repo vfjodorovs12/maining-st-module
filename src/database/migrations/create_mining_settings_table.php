@@ -10,9 +10,9 @@ class CreateMiningSettingsTable extends Migration
     {
         Schema::create('mining_settings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('corporation_id');
-            $table->json('tax_rates');
-            $table->decimal('refining_efficiency', 5, 2);
+            $table->unsignedBigInteger('corporation_id')->nullable();
+            $table->decimal('refining_efficiency', 5, 2)->default(0.75);
+            $table->json('tax_rates')->nullable();
             $table->boolean('debug_mode')->default(false);
             $table->timestamps();
         });
