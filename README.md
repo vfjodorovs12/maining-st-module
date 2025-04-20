@@ -1,79 +1,123 @@
-Installation Process for EVE SeAT 5
-To install the Mining Module on your EVE SeAT (version 5), follow the steps below:
+# Mining Module for EVE SeAT
 
-1. Requirements
-Before starting, ensure the following prerequisites are met:
+The **Mining Module** is an extension for [EVE SeAT 5](https://github.com/eveseat/seat) that provides advanced functionality to track mining operations, manage mining moons, create invoices, and display mining statistics. This module is designed to support EVE Online corporations in managing and optimizing their mining activities.
 
-EVE SeAT version 5 is installed and running.
-You have access to the server console where EVE SeAT is deployed.
-PHP version 8.0 or higher is installed.
-Composer is installed on the server.
-2. Installation Steps
-Step 1: Download the Module
-Navigate to the directory where EVE SeAT is installed:
+---
 
-bash
-cd /var/www/seat
-Ensure your project is set up to work with Composer.
+## Features
 
-Install the module using Composer:
+- **Mining Statistics**: View detailed statistics for mining operations, including ore type, quantity, and refined output.
+- **Moon Management**: Manage mining moons, ore compositions, and associated corporations.
+- **Invoice System**: Generate invoices for mining taxes and manage payment statuses.
+- **Mining Calendar**: Display upcoming moon extractions in a calendar format.
+- **Module Settings**: Configure tax rates, refining efficiency, and debug mode for your corporation.
 
-bash
-composer require yourusername/seat-mining
-Step 2: Run Database Migrations
-Run the following command to create the necessary database tables:
+---
 
-bash
-php artisan migrate
-Step 3: Publish Configuration and Resources
-Publish the module's configuration and resource files:
+## Installation
 
-bash
-php artisan vendor:publish --tag=mining --force
-Ensure the module's configuration files are published to the config/ directory.
+### Requirements
 
-Step 4: Configure the Module
-Open the module's configuration file:
+- **EVE SeAT Version**: 5.x
+- **PHP**: 8.0 or later
+- **Composer**: Installed on the server
 
-bash
-nano config/mining.php
-Set the required parameters:
+### Installation Steps
 
-corporation_id: The ID of the corporation to track mining for.
-refining_efficiency: The ore refining efficiency (0.0 - 1.0).
-tax_rates: Tax rates for different ore types (e.g., R64, R32, R16).
-debug_mode: Enable or disable debug mode (true/false).
-Example configuration:
+1. **Navigate to the SeAT Installation Directory**:
+   ```bash
+   cd /var/www/seat
+   ```
 
-PHP
-return [
-    'corporation_id' => 987654321,
-    'refining_efficiency' => 0.75,
-    'tax_rates' => [
-        'R64' => 15,
-        'R32' => 10,
-        'R16' => 8,
-    ],
-    'debug_mode' => false,
-];
-Save the changes and close the editor.
-3. Configure Permissions
-Log in to the EVE SeAT web interface.
-Go to the "Roles & Permissions" section to create or edit user roles.
-Add the following permissions:
-view mining statistics — Allows users to view mining statistics.
-manage moons — Allows users to manage moons.
-view invoices — Allows users to view and create invoices.
-view calendar — Allows users to view the mining calendar.
-configure mining module — Allows users to configure the mining module.
-4. Verify Installation
-Restart the EVE SeAT services to ensure the module is loaded:
+2. **Install via Composer**:
+   ```bash
+   composer require yourusername/seat-mining
+   ```
 
-bash
-php artisan cache:clear
-php artisan config:clear
-php artisan view:clear
-Open the SeAT admin interface in your browser and verify that the new Mining Module section appears in the menu.
+3. **Run Migrations**:
+   ```bash
+   php artisan migrate
+   ```
 
-5. Optional
-If you wish to enable debugging for the module, set the debug_mode parameter to true in the config/mining.php file.
+4. **Publish Configuration and Resources**:
+   ```bash
+   php artisan vendor:publish --tag=mining --force
+   ```
+
+5. **Configure the Module**:
+   Open the configuration file located at `config/mining.php` and set the required parameters:
+   ```php
+   return [
+       'corporation_id' => 987654321,
+       'refining_efficiency' => 0.75,
+       'tax_rates' => [
+           'R64' => 15,
+           'R32' => 10,
+           'R16' => 8,
+       ],
+       'debug_mode' => false,
+   ];
+   ```
+
+6. **Clear Cache**:
+   ```bash
+   php artisan cache:clear
+   php artisan config:clear
+   php artisan view:clear
+   ```
+
+---
+
+## Permissions
+
+The following permissions are required to access the module's features. Configure them in the **Roles & Permissions** section of the SeAT admin panel:
+
+| Permission Key               | Description                                    |
+|------------------------------|------------------------------------------------|
+| `view mining statistics`     | View mining statistics.                        |
+| `manage moons`               | Manage mining moons and their compositions.   |
+| `view invoices`              | View and create mining invoices.              |
+| `view calendar`              | View the mining calendar.                     |
+| `configure mining module`    | Configure the module's settings.              |
+
+---
+
+## Usage
+
+### Mining Statistics
+1. Navigate to **Mining > Statistics** in the SeAT menu.
+2. View statistics grouped by ore type, quantity, refined output, and waste.
+
+### Moon Management
+1. Navigate to **Mining > Moons**.
+2. Add, edit, or delete moons and their ore compositions.
+
+### Invoice System
+1. Navigate to **Mining > Invoices**.
+2. Generate and manage invoices for mining operations.
+
+### Mining Calendar
+1. Navigate to **Mining > Calendar**.
+2. View upcoming moon extractions in a calendar format.
+
+### Module Settings
+1. Navigate to **Mining > Settings**.
+2. Configure tax rates, refining efficiency, and debug mode.
+
+---
+
+## Debugging
+
+Enable debug mode by setting the `debug_mode` parameter to `true` in the `config/mining.php` file. Debug logs can be viewed in the database under the `mining_debug_logs` table.
+
+---
+
+## Contribution
+
+Contributions are welcome! If you'd like to contribute to the module, please fork the repository and submit a pull request.
+
+---
+
+## Support
+
+If you encounter issues or have questions, please open an issue on the [GitHub repository](https://github.com/yourusername/seat-mining/issues).
