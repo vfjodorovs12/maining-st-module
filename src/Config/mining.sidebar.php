@@ -2,46 +2,34 @@
 
 return [
     'mining' => [
-        'name' => 'mining::sidebar.mining',
-        'icon' => 'fas fa-chart-bar',
-        'route_segment' => 'mining',
-        'permission' => 'mining.view',
-        'entries' => [
-            // Страница статистики добычи
-            [
-                'name' => 'mining::sidebar.statistics',
-                'icon' => 'fas fa-chart-line',
+        'title' => 'Mining',
+        'icon' => 'fa fa-industry',
+        'children' => [
+            'statistics' => [
+                'title' => 'Statistics',
+                'permission' => 'view mining statistics',
                 'route' => 'mining.statistics',
-                'permission' => 'mining.view'
             ],
-            // Страница управления лунами
-            [
-                'name' => 'mining::sidebar.moons',
-                'icon' => 'fas fa-moon',
+            'moons' => [
+                'title' => 'Moons',
+                'permission' => 'manage moons',
                 'route' => 'mining.moons',
-                'permission' => 'mining.manage_moons'
             ],
-            // Календарь лун
-            [
-                'name' => 'mining::sidebar.calendar',
-                'icon' => 'fas fa-calendar-alt',
-                'route' => 'mining.calendar',
-                'permission' => 'mining.calendar'
-            ],
-            // Страница счетов
-            [
-                'name' => 'mining::sidebar.invoices',
-                'icon' => 'fas fa-file-invoice-dollar',
+            'invoices' => [
+                'title' => 'Invoices',
+                'permission' => 'view invoices',
                 'route' => 'mining.invoices',
-                'permission' => 'mining.view_invoices'
             ],
-            // Страница настроек
-            [
-                'name' => 'mining::sidebar.settings',
-                'icon' => 'fas fa-cogs',
+            'calendar' => [
+                'title' => 'Calendar',
+                'permission' => 'view calendar',
+                'route' => 'mining.calendar',
+            ],
+            'settings' => [
+                'title' => 'Settings',
+                'permission' => 'configure mining module',
                 'route' => 'mining.settings',
-                'permission' => 'mining.settings'
-            ]
-        ]
-    ]
+            ],
+        ],
+    ],
 ];
