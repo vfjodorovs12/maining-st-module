@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\MiningInvoice;
+
+class MiningInvoiceService
+{
+    public static function createInvoice($characterId, $details, $total)
+    {
+        return MiningInvoice::create([
+            'character_id' => $characterId,
+            'details' => $details,
+            'total' => $total,
+        ]);
+    }
+
+    public static function markAsPaid($invoiceId)
+    {
+        $invoice = MiningInvoice::find($invoiceId);
+        if ($invoice) {
+            $invoice->paid_at = now();
+            $invoice->save();
+        }
+
+        return $invoice;
+    }
+}
