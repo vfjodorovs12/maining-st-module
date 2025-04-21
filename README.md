@@ -1,7 +1,7 @@
 # Mining Module for EVE SeAT
 
 # The module is under development and has not been tested!!!
-
+# as soon as the module is tested it will be in the branch - stable 
 
 
 This module provides mining tracking functionality for EVE SeAT.
