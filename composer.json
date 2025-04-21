@@ -1,5 +1,5 @@
 {
-    "name": "yourusername/seat-mining",
+    "name": "vfjodorovs12/seat-mining",
     "description": "Mining module for EVE SeAT",
     "type": "library",
     "license": "MIT",
@@ -18,5 +18,10 @@
                 "App\\MiningServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan package:discover --ansi"
+        ]
     }
 }
