@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider; 
 
 class MiningServiceProvider extends ServiceProvider
 {
